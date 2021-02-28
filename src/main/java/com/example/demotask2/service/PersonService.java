@@ -22,7 +22,6 @@ public class PersonService {
     public void createNewPerson(String name) {
         Person p = new Person(name);
         entityManager.persist(p);
-        //entityManager.flush();
     }
 
     public void deletePerson(Long id) {
@@ -30,5 +29,9 @@ public class PersonService {
                 .createQuery("delete from Person p where p.id=:id")
                 .setParameter("id", id)
                 .executeUpdate();
+    }
+
+    public Person getPerson(Long id) {
+        return entityManager.find(Person.class, id);
     }
 }
