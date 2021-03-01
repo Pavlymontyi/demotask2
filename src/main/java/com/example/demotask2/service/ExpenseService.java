@@ -17,14 +17,14 @@ public class ExpenseService {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Category> getLastExpensesFromPersons(Long personId) {
+    public List<Expense> getLastExpensesFromPersons(Long personId) {
         return entityManager
                 .createQuery("select e from Expense e where e.person.id=:id")
                 .setParameter("id", personId)
                 .getResultList();
     }
 
-    public List<Category> getLastExpenses() {
+    public List<Expense> getLastExpenses() {
         return entityManager
                 .createQuery("select e from Expense e")
                 .getResultList();
